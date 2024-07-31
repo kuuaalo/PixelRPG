@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed13fdcca4b6e92409aaf6acfc43042f
+guid: f39231d56dbb463449f8a89f4a82f6aa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -31,7 +31,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 1
-  maxTextureSize: 32
+  maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
     filterMode: 0
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -59,7 +59,7 @@ TextureImporter:
   singleChannelComponent: 0
   flipbookRows: 1
   flipbookColumns: 1
-  maxTextureSizeSet: 1
+  maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,64 +110,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stand
+      name: couch_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 402
-        height: 1280
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34a5601aa5778ef428ae4ff650f19abe
-      internalID: 633369178
+      spriteID: 02e90c7d24de3a24e91a874a4d359cd4
+      internalID: 2096311616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk1
+      name: couch_1
       rect:
         serializedVersion: 2
-        x: 580
+        x: 32
         y: 0
-        width: 530
-        height: 1280
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 907680cb9bbc00946b27c776a2b40243
-      internalID: 2142728520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk2
-      rect:
-        serializedVersion: 2
-        x: 1254
-        y: 0
-        width: 613
-        height: 1280
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6f38185a93317e4199c71eeae50235a
-      internalID: 1739812622
+      spriteID: 83ee8d9cfbaae4444b2bc93b6ac5f2d6
+      internalID: 1603630821
       vertices: []
       indices: 
       edges: []
@@ -183,9 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      stand: 633369178
-      walk1: 2142728520
-      walk2: 1739812622
+      couch_0: 2096311616
+      couch_1: 1603630821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
