@@ -9,7 +9,7 @@ public class NPC : MonoBehaviour
     public CharacterLines characterLines;
     public GameManager gameManager;
     
-    public void OnConversationFinish() // interaction trigger
+    public void OnConversationFinish()
     {
        if (!isInteracted)
         {

@@ -2348,6 +2348,10 @@ PrefabInstance:
       value: 0.21960786
       objectReference: {fileID: 0}
     - target: {fileID: 7273756962900634789, guid: 1e6ad8a1f70f15e4e89c0d0251249c97, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1451062366}
+    - target: {fileID: 7273756962900634789, guid: 1e6ad8a1f70f15e4e89c0d0251249c97, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1326178123}
@@ -7782,14 +7786,14 @@ SceneRoots:
   - {fileID: 1877161682}
   - {fileID: 1969298438}
   - {fileID: 1358164039}
-  - {fileID: 1438194316}
   - {fileID: 1451062367}
   - {fileID: 2033143384}
   - {fileID: 1849486904}
+  - {fileID: 1799776847}
+  - {fileID: 1326178124}
+  - {fileID: 245401599}
+  - {fileID: 1438194316}
   - {fileID: 886168870}
   - {fileID: 2106334085}
   - {fileID: 1803476419}
-  - {fileID: 1799776847}
   - {fileID: 1908604153}
-  - {fileID: 1326178124}
-  - {fileID: 245401599}

@@ -68,14 +68,11 @@ public class DialogueManager : MonoBehaviour
 
         if (!everythingInteracted)
         {
-            
+
             lines = characterLines.lines;
-            
-            
-            
+
         }else
         {
-            Debug.Log("That shouldn't have happened");
             lines = characterLines.lines2;
         }
 
@@ -87,11 +84,8 @@ public class DialogueManager : MonoBehaviour
 
         DialogueBoxController dialogueBoxController = canvas.GetComponent<DialogueBoxController>(); //Get script from the canvas object
         
-        dialogueBoxController.ShowDialogue(lines); //Summon method and give lines array as parameter
-        NPC npcScript =  npcgameObject.GetComponent<NPC>(); 
-        npcScript.OnConversationFinish();
+        dialogueBoxController.ShowDialogue(lines, npcgameObject); //Summon method and give array and collided object as parameter
        
-
     }
 }
 

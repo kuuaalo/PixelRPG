@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             if (phone_isInteracted && window_isInteracted  && desk_isInteracted)
             {
                 everythingInteracted = true;
-                Debug.Log("Set everything interacted");
+                
                 if (!eventTriggered)
                 {
                     StoryEvent();

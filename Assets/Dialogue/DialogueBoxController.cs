@@ -11,16 +11,16 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     private string[] lines;
     private int index = 0;
+    GameObject npcgameObject;
 
 
    
-    public void ShowDialogue(string[] newLines)
+    public void ShowDialogue(string[] newLines, GameObject gameObject)
     {
         dialoguePanel.gameObject.SetActive(true);
+        npcgameObject = gameObject;
         lines = newLines;
         NextLine();
-        
-
     }
 
     public void NextLine()
@@ -39,6 +39,8 @@ public class DialogueBoxController : MonoBehaviour
     {
         dialogueText.text = null;
         index = 0;
+        NPC npcScript =  npcgameObject.GetComponent<NPC>(); 
+        npcScript.OnConversationFinish();
         dialoguePanel.gameObject.SetActive(false);
         
     }
