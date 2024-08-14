@@ -7,6 +7,4 @@ public class CharacterLines : ScriptableObject
 {
     public string [] lines;
     public string [] lines2;
-    
-    
 }

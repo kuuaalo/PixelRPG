@@ -10,28 +10,36 @@ public class PlayerController : MonoBehaviour
    float vertical;
    public float runSpeed = 20.0f;
    
-   
 
    void Start ()
    {
       body = GetComponent<Rigidbody2D>();
       sr = GetComponent<SpriteRenderer>();
+      GameEvents.current.onInteractTriggerDay += onClickYes;
       
    }
 
    void Update()
    {
-      // Gives a value between -1 and 1
-      horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
-      vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+      if (GameManager.current.isInConversation == false)
+         {
+         body.constraints = RigidbodyConstraints2D.FreezeRotation;
+         // Gives a value between -1 and 1
+         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
+         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
-      if (horizontal != 0 && horizontal > 0)
-      {
-        sr.flipX = true;
+         if (horizontal != 0 && horizontal > 0)
+         {
+         sr.flipX = true;
+         }
+         else if (horizontal != 0 && horizontal < 0)
+         {
+         sr.flipX = false;
+         }
       }
-      else if (horizontal != 0 && horizontal < 0)
+      else
       {
-        sr.flipX = false;
+         body.constraints = RigidbodyConstraints2D.FreezeAll;
       }
    }
 
@@ -39,4 +47,14 @@ public class PlayerController : MonoBehaviour
    {
       body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
    }
+   
+   void onClickYes()
+    {
+        transform.position = new Vector2(-9,-1);
+    }
+    
+    private void OnDestroy()
+    {
+        GameEvents.current.onInteractTriggerDay -= onClickYes;
+    }
 }

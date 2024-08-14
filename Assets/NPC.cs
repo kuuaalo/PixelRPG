@@ -8,12 +8,33 @@ public class NPC : MonoBehaviour
     public bool isInteracted = false;
     public CharacterLines characterLines;
     public GameManager gameManager;
-    
-    public void OnConversationFinish()
+    public bool isLetter = false;
+  
+
+    public string[] OnConversationStart()
     {
-       if (!isInteracted)
+        gameManager = gameManager.GetComponent<GameManager>();
+        
+        bool everythingInteracted = gameManager.everythingInteracted;
+        string[] lines; 
+
+        if (!everythingInteracted)
         {
-          isInteracted = true;
+          lines = characterLines.lines;
+          if (!isInteracted)
+          {
+            isInteracted = true;
+          }
+
+        }else if(isLetter && everythingInteracted)
+        {
+          lines = characterLines.lines2;
+          GameEvents.current.InteractLetter();
+        }else 
+        {
+          lines = characterLines.lines2;
         }
+      
+      return lines;
     }
 }

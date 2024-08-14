@@ -9,16 +9,24 @@ public class DialogueBoxController : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject dialoguePanel;
+    [SerializeField] GameObject questionDialog;
     private string[] lines;
     private int index = 0;
-    GameObject npcgameObject;
+    public GameObject player;
+    
+    
 
+    void Start()
+    {
+        GameEvents.current.onInteractLetter += onInteractLetterItem;
+        GameEvents.current.onInteractTriggerDay += EndDialogue;
+    }
 
    
-    public void ShowDialogue(string[] newLines, GameObject gameObject)
+    public void ShowDialogue(string[] newLines)
     {
+        GameManager.current.isInConversation = true; //tells game manager that player is in the middle of conversation
         dialoguePanel.gameObject.SetActive(true);
-        npcgameObject = gameObject;
         lines = newLines;
         NextLine();
     }
@@ -39,9 +47,23 @@ public class DialogueBoxController : MonoBehaviour
     {
         dialogueText.text = null;
         index = 0;
-        NPC npcScript =  npcgameObject.GetComponent<NPC>(); 
-        npcScript.OnConversationFinish();
-        dialoguePanel.gameObject.SetActive(false);
+        GameManager.current.isInConversation = false; //player no longer in conversation
+        dialoguePanel.gameObject.SetActive(false); //Hide dialogue panel
+        questionDialog.gameObject.SetActive(false); //Hide question dialog
         
+    }
+    
+    private void onInteractLetterItem()
+    {
+        questionDialog.gameObject.SetActive(true); // activate question dialog
+    }
+
+
+    private void OnDestroy()
+    {
+        
+        GameEvents.current.onInteractLetter -= onInteractLetterItem;
+        GameEvents.current.onInteractTriggerDay -= EndDialogue;
+
     }
 }

@@ -11,14 +11,10 @@ public class DialogueManager : MonoBehaviour
     public Canvas canvas;
     private bool isInteracted;
     public GameObject gameManagerObject;
-    int index;
+    public string[] newlines;
+    
     
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -28,8 +24,8 @@ public class DialogueManager : MonoBehaviour
             if(Input.GetKeyDown(interactKey)) //and presses a key
             {
                 Debug.Log("Player pressed button");
-                CheckDialogueStatus();
                 
+                CheckDialogueStatus();
             }
         }  
 
@@ -43,7 +39,6 @@ public class DialogueManager : MonoBehaviour
             isInRange = true;
             npcgameObject = collision.gameObject;
 
-            Debug.Log("Player now in range");
         }
     }
     private void OnTriggerExit2D(Collider2D collision) //Object leaves collider area
@@ -52,7 +47,6 @@ public class DialogueManager : MonoBehaviour
         {
             isInRange = false; 
             
-            Debug.Log("Player not now in range");
         }
     } 
 
@@ -60,31 +54,17 @@ public class DialogueManager : MonoBehaviour
     public void CheckDialogueStatus()
     {
         NPC npcScript =  npcgameObject.GetComponent<NPC>(); 
-        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
-        bool everythingInteracted = gameManager.everythingInteracted;
+        newlines = npcScript.OnConversationStart();
+        InteractWithNPC();
 
-        CharacterLines characterLines = npcScript.characterLines; //Get characterLines variable from the NPC-script
-        string[] lines;
-
-        if (!everythingInteracted)
-        {
-
-            lines = characterLines.lines;
-
-        }else
-        {
-            lines = characterLines.lines2;
-        }
-
-        InteractWithNPC(lines);
     }
 
-    public void InteractWithNPC(string[] lines)
+    public void InteractWithNPC()
     {
 
         DialogueBoxController dialogueBoxController = canvas.GetComponent<DialogueBoxController>(); //Get script from the canvas object
         
-        dialogueBoxController.ShowDialogue(lines, npcgameObject); //Summon method and give array and collided object as parameter
+        dialogueBoxController.ShowDialogue(newlines); //Summon method and give array as parameter
        
     }
 }
