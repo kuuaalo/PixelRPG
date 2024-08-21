@@ -12,23 +12,36 @@ public class DialogueManager : MonoBehaviour
     private bool isInteracted;
     public GameObject gameManagerObject;
     public string[] newlines;
+    public bool isIntroDialogue = false;
     
-    
-
+    void Start()
+    {
+        // Automatically trigger the dialogue when the game starts
+       AutoTriggerDialogue();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(isInRange && npcgameObject != null) //If player is in range
+        if((isInRange && npcgameObject != null) || isIntroDialogue) //If player is in range
         {
             if(Input.GetKeyDown(interactKey)) //and presses a key
             {
-                Debug.Log("Player pressed button");
                 
-                CheckDialogueStatus();
+                if (GameManager.current.isInConversation == false)
+                {
+                    CheckDialogueStatus();
+                }else
+                {
+                    InteractWithNPC();
+                }
             }
         }  
 
+        if(GameManager.current.isInConversation == false)
+        {
+            isIntroDialogue = false;
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D collision) //Object enters collider
@@ -46,14 +59,25 @@ public class DialogueManager : MonoBehaviour
         if(collision.gameObject.CompareTag("Interactable"))
         {
             isInRange = false; 
-            
+            npcgameObject = null;
         }
     } 
 
 
     public void CheckDialogueStatus()
     {
-        NPC npcScript =  npcgameObject.GetComponent<NPC>(); 
+        NPC npcScript;
+        
+        if (npcgameObject != null)
+        {
+            npcScript =  npcgameObject.GetComponent<NPC>();
+        }
+        else
+        {
+            npcScript = GetComponent<NPC>();
+            
+        }
+
         newlines = npcScript.OnConversationStart();
         InteractWithNPC();
 
@@ -65,7 +89,14 @@ public class DialogueManager : MonoBehaviour
         DialogueBoxController dialogueBoxController = canvas.GetComponent<DialogueBoxController>(); //Get script from the canvas object
         
         dialogueBoxController.ShowDialogue(newlines); //Summon method and give array as parameter
+        
        
+    }
+
+     public void AutoTriggerDialogue()
+    {
+        isIntroDialogue = true;
+        CheckDialogueStatus();
     }
 }
 

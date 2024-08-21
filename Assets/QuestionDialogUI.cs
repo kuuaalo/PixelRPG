@@ -7,20 +7,12 @@ using TMPro;
 
 public class QuestionDialogUI : MonoBehaviour
 {
+
+    //pretty sure this isn't used anymore? 
     private TextMeshProUGUI TextMeshPro;
     private Button yesBtn;
     private Button noBtn;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     private void Awake() 
     {

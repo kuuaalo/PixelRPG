@@ -18,8 +18,8 @@ public class DialogueBoxController : MonoBehaviour
 
     void Start()
     {
-        GameEvents.current.onInteractLetter += onInteractLetterItem;
-        GameEvents.current.onInteractTriggerDay += EndDialogue;
+        GameEvents.current.onInteractLetter += onInteractLetterItem; //when player Interacts with letter open question dialog
+        GameEvents.current.onInteractTriggerDay += EndDialogue; //when player skips day call end dialogue
     }
 
    
@@ -45,8 +45,8 @@ public class DialogueBoxController : MonoBehaviour
     }
     public void EndDialogue()
     {
-        dialogueText.text = null;
-        index = 0;
+        dialogueText.text = null; //reset dialogue text object
+        index = 0; //set index back to 0
         GameManager.current.isInConversation = false; //player no longer in conversation
         dialoguePanel.gameObject.SetActive(false); //Hide dialogue panel
         questionDialog.gameObject.SetActive(false); //Hide question dialog

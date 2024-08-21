@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
    {
       body = GetComponent<Rigidbody2D>();
       sr = GetComponent<SpriteRenderer>();
-      GameEvents.current.onInteractTriggerDay += onClickYes;
+      GameEvents.current.onInteractTriggerDay += onDayChange;
       
    }
 
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
          sr.flipX = false;
          }
       }
-      else
+      else //if player is in conversation freeze movement
       {
          body.constraints = RigidbodyConstraints2D.FreezeAll;
       }
@@ -48,13 +48,14 @@ public class PlayerController : MonoBehaviour
       body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
    }
    
-   void onClickYes()
+   void onDayChange()
     {
-        transform.position = new Vector2(-9,-1);
+      //reset player position when the day changes
+      transform.position = new Vector2(-9,-1);
     }
     
     private void OnDestroy()
     {
-        GameEvents.current.onInteractTriggerDay -= onClickYes;
+        GameEvents.current.onInteractTriggerDay -= onDayChange;
     }
 }

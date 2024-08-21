@@ -13,7 +13,7 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action onInteractTriggerDay;
+    public event Action onInteractTriggerDay; //When player chooses yes on letter and skips to next day
     public void InteractTriggerDay()
     {
         if(onInteractTriggerDay != null)
@@ -22,7 +22,7 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onInteractLetter;
+    public event Action onInteractLetter; //When player interacts with the letter
     public void InteractLetter()
     {
          if(onInteractLetter != null)
@@ -31,7 +31,7 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onPhoneCall;
+    public event Action onPhoneCall; 
     public void PhoneCall()
     {
          if(onPhoneCall != null)

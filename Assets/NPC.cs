@@ -9,6 +9,8 @@ public class NPC : MonoBehaviour
     public CharacterLines characterLines;
     public GameManager gameManager;
     public bool isLetter = false;
+    public bool isPhone = false;
+    
   
 
     public string[] OnConversationStart()
@@ -18,21 +20,29 @@ public class NPC : MonoBehaviour
         bool everythingInteracted = gameManager.everythingInteracted;
         string[] lines; 
 
-        if (!everythingInteracted)
+        if (!everythingInteracted) //if player hasn't interacted with everything
         {
-          lines = characterLines.lines;
-          if (!isInteracted)
+          lines = characterLines.lines; //use normal lines
+          if (!isInteracted) //if item hasn't been interacted
           {
-            isInteracted = true;
+            isInteracted = true; //set it interacted
           }
-
-        }else if(isLetter && everythingInteracted)
+          //if object is letter and time can be skipped
+          if (isLetter && GameManager.current.canSkip == true) 
+          {
+          lines = characterLines.lines3; //use secondary lines
+          GameEvents.current.InteractLetter(); //Invoke interactletter
+          }
+        }
+        else
         {
-          lines = characterLines.lines2;
-          GameEvents.current.InteractLetter();
-        }else 
-        {
-          lines = characterLines.lines2;
+          //if everything interacted use lines2
+          lines = characterLines.lines2; 
+          if(isPhone) //if everything interacted and isphone
+          {
+            GameManager.current.everythingInteracted = false; //set false to use normal lines
+            GameManager.current.canSkip = true; //let letter skip 
+          }
         }
       
       return lines;
