@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
                 
                 everythingInteracted = true; //set everythinginteracted true, 
                 phoneCallListened = true;
-                Debug.Log("Phone call listened and everything interacted");
+                
             }
         }
         
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     void onClickYes() //if player clicks yes on the letter adds to the day counter
     {
         currentDay ++;
+        Debug.Log(currentDay);
     }
     
     private void OnDestroy()

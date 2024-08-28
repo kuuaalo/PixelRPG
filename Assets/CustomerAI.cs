@@ -8,15 +8,18 @@ public class CustomerAI : MonoBehaviour
     {
     Idle,
     Following,
-    Fleeing
+    Fleeing,
+    WalkingToDoor
     }
     
     public NPCState currentState = NPCState.Idle;
-    public Transform player;
+    public Transform player;    //player location on scene
+    public Transform door;  //door location on scene
     public float followDistance = 4f;
     public float fleeDistance = 3f;
     public float moveSpeed = 0.5f;
     public float stopDistance = 4f;
+    public float doorReachThreshold = 0.5f; 
      
 
     public void Update()
@@ -24,6 +27,7 @@ public class CustomerAI : MonoBehaviour
         switch (currentState)
         {
             case NPCState.Idle:
+                
                 IdleState();
                 break;
 
@@ -35,6 +39,11 @@ public class CustomerAI : MonoBehaviour
             case NPCState.Fleeing:
                 
                 FleeFromPlayer();
+                break;
+            
+            case NPCState.WalkingToDoor:
+                
+                WalkToDoor();
                 break;
         }
     }
@@ -82,6 +91,20 @@ public class CustomerAI : MonoBehaviour
         if (distanceToPlayer > followDistance)
         {
             ChangeState(NPCState.Following);
+        }
+    }
+
+    void WalkToDoor()
+    {
+        float distanceToDoor = Vector2.Distance(transform.position, door.position);
+        if (distanceToDoor <= doorReachThreshold) // Check if NPC has reached the door
+        {
+            
+        }else
+        {
+            Vector2 direction = (door.position - transform.position).normalized; // Direction towards the door
+            transform.position = Vector2.MoveTowards(transform.position, door.position, moveSpeed * Time.deltaTime);
+            
         }
     }
 

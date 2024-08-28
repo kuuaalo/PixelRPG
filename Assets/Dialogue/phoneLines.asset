@@ -9,20 +9,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0646df1512bfd104fb4b8fd5636b7192, type: 3}
+  m_Script: {fileID: 11500000, guid: 70663ae9387afa8448fed68f2e8554d7, type: 3}
   m_Name: phoneLines
   m_EditorClassIdentifier: 
-  lines:
-  - Hmm...
-  - It doesn't seem to work even though it's plugged in.
-  lines2:
-  - Welcome! We are glad to have you as the receptionist.
-  - 'These are your daily tasks in order of importance:'
-  - One, boil me a fresh pot of coffee.
-  - Two, Collect and sort my mail.
-  - Three, Welcome me customers and direct them to me.
-  - Oh, and one last thing. There is one rule you have to always obey.
-  - Never. Open the office door on your own.
-  - Good day.
-  - ...
-  - The phone seems to be unoperable again.
+  day1:
+    lines1:
+    - Hmmm.
+    - It doesn't seem to work even though it's plugged in.
+    lines2:
+    - Welcome! We are glad to have you as the receptionist.
+    - 'These are your daily tasks in order of importance:'
+    - One, boil me a fresh pot of coffee.
+    - Two, Collect and sort my mail.
+    - Three, Welcome me customers and direct them to me.
+    - Oh, and one last thing. There is one rule you have to always obey.
+    - Never. Open the office door on your own.
+    - Good day.
+    - ...
+    - The phone seems to be unoperable again.
+    lines3: []
+  day2:
+    lines1:
+    - I don't know what I expected, still dead.
+    lines2: []
+    lines3: []
+  day3:
+    lines1: []
+    lines2: []
+    lines3: []
+  day4:
+    lines1: []
+    lines2: []
+    lines3: []
+  day5:
+    lines1: []
+    lines2: []
+    lines3: []
+  day6:
+    lines1: []
+    lines2: []
+    lines3: []
+  day7:
+    lines1: []
+    lines2: []
+    lines3: []

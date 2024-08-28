@@ -9,13 +9,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0646df1512bfd104fb4b8fd5636b7192, type: 3}
+  m_Script: {fileID: 11500000, guid: 70663ae9387afa8448fed68f2e8554d7, type: 3}
   m_Name: mailLines
   m_EditorClassIdentifier: 
-  lines:
-  - Stack of letters from various senders. You don't really understand what are they
-    about.
-  lines2:
-  - I should really pick-up the phone.
-  lines3:
-  - Do you want to sort through the mail? (This will progress time to next day)
+  day1:
+    lines1:
+    - Stack of letters from various senders. You don't really understand what are
+      they about.
+    lines2:
+    - I should really pick-up the phone...
+    lines3:
+    - Do you want to sort through the mail? (This will progress time to next day)
+  day2:
+    lines1:
+    - Lot of mail today.
+    - I'll deal with them later.
+    lines2: []
+    lines3:
+    - Do you want to sort through the mail? (This will progress time to next day)
+  day3:
+    lines1: []
+    lines2: []
+    lines3: []
+  day4:
+    lines1: []
+    lines2: []
+    lines3: []
+  day5:
+    lines1: []
+    lines2: []
+    lines3: []
+  day6:
+    lines1: []
+    lines2: []
+    lines3: []
+  day7:
+    lines1: []
+    lines2: []
+    lines3: []

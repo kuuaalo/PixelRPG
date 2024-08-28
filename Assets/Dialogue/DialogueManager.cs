@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject gameManagerObject;
     public string[] newlines;
     public bool isIntroDialogue = false;
+    public GameObject audioManager;
     
     void Start()
     {
@@ -31,6 +32,9 @@ public class DialogueManager : MonoBehaviour
                 if (GameManager.current.isInConversation == false)
                 {
                     CheckDialogueStatus();
+                    PlayAudio playAudio = audioManager.GetComponent<PlayAudio>();
+                    playAudio.PlayInteractSound(); //Play Interact-sound
+                    
                 }else
                 {
                     InteractWithNPC();
@@ -80,6 +84,7 @@ public class DialogueManager : MonoBehaviour
 
         newlines = npcScript.OnConversationStart();
         InteractWithNPC();
+        
 
     }
 
@@ -98,5 +103,6 @@ public class DialogueManager : MonoBehaviour
         isIntroDialogue = true;
         CheckDialogueStatus();
     }
+
 }
 

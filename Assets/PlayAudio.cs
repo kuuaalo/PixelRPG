@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayAudio : MonoBehaviour
 {
-    public AudioSource phoneSound;
+    public AudioSource audioSource;
+    public AudioClip interactSound;
+    public AudioClip phoneSound;
     private int index;
     
     void Start()
     {
         GameEvents.current.onPhoneCall += EnablePlaySound;
+        audioSource.clip = phoneSound; 
+       
     }
+
 
     public void EnablePlaySound()
     {
         StartCoroutine(PlaySoundCoroutine());
+        
 
     }
 
@@ -25,12 +31,13 @@ public class PlayAudio : MonoBehaviour
         while (!GameManager.current.isInConversation) //Play sound until player enters conversation
         {
             PlaySound(); //enable audio source
-            yield return new WaitForSeconds(phoneSound.clip.length); //wait until the clip finishes to play it again
+            yield return new WaitForSeconds(audioSource.clip.length); //wait until the clip finishes to play it again
             
             //if player interacts with phone disable sound
             if (GameManager.current.isInConversation && !GameManager.current.everythingInteracted) 
             {
-                phoneSound.enabled = false;
+                //phoneSound.enabled = false;
+                audioSource.Stop();
             }
             
             
@@ -39,7 +46,13 @@ public class PlayAudio : MonoBehaviour
 
     public void PlaySound()
     {
-        phoneSound.enabled = true; //enable audio source
+        audioSource.Play();
+
+    }
+
+    public void PlayInteractSound()
+    {
+        audioSource.PlayOneShot(interactSound);
     }
     
     private void OnDestroy()

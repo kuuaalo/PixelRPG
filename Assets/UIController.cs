@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class UIController : MonoBehaviour
 {
-   public GameObject blackOutSquare;
+    public GameObject blackOutSquare;
+    [SerializeField] TextMeshProUGUI dayText;
+    
 
     void Start()
     {
         //When player clicks yes on letter and day changes
         GameEvents.current.onInteractTriggerDay += EnableDaySquare;
-
     }
 
    
@@ -23,7 +26,9 @@ public class UIController : MonoBehaviour
     private IEnumerator DaySquare()
     {
         blackOutSquare.gameObject.SetActive(true); 
-        yield return new WaitForSeconds(4); //display 'day 2' text and black screen for 4 seconds
+        int dayNumber = GameManager.current.currentDay + 2; //get day number and 2 bc im lazy
+        dayText.text = ("DAY " + dayNumber);
+        yield return new WaitForSeconds(4); //display text and black screen for 4 seconds
         blackOutSquare.gameObject.SetActive(false); //close black screen
     }
 

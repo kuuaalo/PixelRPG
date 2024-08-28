@@ -39,4 +39,13 @@ public class GameEvents : MonoBehaviour
             onPhoneCall();
         }
     }
+
+    public event Action onDoorInteract; 
+    public void DoorInteract()
+    {
+         if(onDoorInteract!= null)
+        {
+            onDoorInteract();
+        }
+    }
 }

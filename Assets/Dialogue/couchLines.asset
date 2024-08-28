@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70663ae9387afa8448fed68f2e8554d7, type: 3}
+  m_Name: couchLines
+  m_EditorClassIdentifier: 
+  day1:
+    lines1:
+    - A pristine white leather couch with an attached aquarium.
+    - The fish swim lazily around in circles.
+    lines2:
+    - I should really pick-up the phone...
+    lines3: []
+  day2:
+    lines1:
+    - I could ask The Customer if they want to sit down.
+    - I'd rather not though.
+    lines2: []
+    lines3: []
+  day3:
+    lines1: []
+    lines2: []
+    lines3: []
+  day4:
+    lines1: []
+    lines2: []
+    lines3: []
+  day5:
+    lines1: []
+    lines2: []
+    lines3: []
+  day6:
+    lines1: []
+    lines2: []
+    lines3: []
+  day7:
+    lines1: []
+    lines2: []
+    lines3: []

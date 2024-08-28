@@ -9,11 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0646df1512bfd104fb4b8fd5636b7192, type: 3}
+  m_Script: {fileID: 11500000, guid: 70663ae9387afa8448fed68f2e8554d7, type: 3}
   m_Name: doorLines
   m_EditorClassIdentifier: 
-  lines:
-  - A gargantuan door, it has to be at least thrice your size.
-  - Does this lead to The Employer's office? Talk about an ego-problem.
-  lines2:
-  - I should really pick-up the phone.
+  day1:
+    lines1:
+    - A gargantuan door, it has to be at least thrice your size.
+    - Does this lead to The Employer's office? Talk about an ego-problem.
+    lines2:
+    - I should really pick-up the phone.
+    lines3: []
+  day2:
+    lines1:
+    - I should finish my other tasks first,
+    - so the boss won't get angry with me.
+    lines2: []
+    lines3: []
+  day3:
+    lines1: []
+    lines2: []
+    lines3: []
+  day4:
+    lines1: []
+    lines2: []
+    lines3: []
+  day5:
+    lines1: []
+    lines2: []
+    lines3: []
+  day6:
+    lines1: []
+    lines2: []
+    lines3: []
+  day7:
+    lines1: []
+    lines2: []
+    lines3: []
