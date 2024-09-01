@@ -20,9 +20,9 @@ MonoBehaviour:
     - Welcome! We are glad to have you as the receptionist.
     - 'These are your daily tasks in order of importance:'
     - One, boil me a fresh pot of coffee.
-    - Two, Collect and sort my mail.
-    - Three, Welcome me customers and direct them to me.
-    - Oh, and one last thing. There is one rule you have to always obey.
+    - Two, Welcome my customers and direct them to me.
+    - Three, sort and organize my mail.
+    - And one last thing. There is one rule you have to always obey.
     - Never. Open the office door on your own.
     - Good day.
     - ...
@@ -31,7 +31,8 @@ MonoBehaviour:
   day2:
     lines1:
     - I don't know what I expected, still dead.
-    lines2: []
+    lines2:
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

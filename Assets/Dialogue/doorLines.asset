@@ -23,7 +23,8 @@ MonoBehaviour:
     lines1:
     - I should finish my other tasks first,
     - so the boss won't get angry with me.
-    lines2: []
+    lines2:
+    - '*knock knock*'
     lines3: []
   day3:
     lines1: []

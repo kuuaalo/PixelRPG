@@ -23,7 +23,8 @@ MonoBehaviour:
     lines1:
     - It's clean just like always.
     - Even though I'm sure I spilled some coffee on it yesterday.
-    lines2: []
+    lines2:
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

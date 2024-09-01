@@ -39,6 +39,15 @@ public class GameEvents : MonoBehaviour
             onPhoneCall();
         }
     }
+    
+    public event Action onDayTwoTasks; 
+    public void DayTwoTasks()
+    {
+         if(onDayTwoTasks!= null)
+        {
+            onDayTwoTasks();
+        }
+    }
 
     public event Action onDoorInteract; 
     public void DoorInteract()
@@ -48,4 +57,5 @@ public class GameEvents : MonoBehaviour
             onDoorInteract();
         }
     }
+
 }

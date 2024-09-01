@@ -24,7 +24,8 @@ MonoBehaviour:
     lines1:
     - Lot of mail today.
     - I'll deal with them later.
-    lines2: []
+    lines2:
+    - I need to escort the customer in to the office.
     lines3:
     - Do you want to sort through the mail? (This will progress time to next day)
   day3:

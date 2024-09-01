@@ -50,8 +50,9 @@ public class CustomerAI : MonoBehaviour
 
     void IdleState()
     {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         NPC npcScript = GetComponent<NPC>();
-        if(npcScript.isInteracted == true && GameManager.current.isInConversation == false)
+        if(npcScript.isInteracted == true && GameManager.current.isInConversation == false && distanceToPlayer >= followDistance)
         {
             ChangeState(NPCState.Following);
         }
@@ -96,6 +97,7 @@ public class CustomerAI : MonoBehaviour
 
     void WalkToDoor()
     {
+        moveSpeed = 2f;
         float distanceToDoor = Vector2.Distance(transform.position, door.position);
         if (distanceToDoor <= doorReachThreshold) // Check if NPC has reached the door
         {

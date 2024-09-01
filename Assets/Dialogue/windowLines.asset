@@ -22,7 +22,8 @@ MonoBehaviour:
   day2:
     lines1:
     - I don't feel like wasting time watching out of the window right now.
-    lines2: []
+    lines2:
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

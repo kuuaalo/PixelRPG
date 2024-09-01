@@ -12,30 +12,30 @@ public class DialogueManager : MonoBehaviour
     private bool isInteracted;
     public GameObject gameManagerObject;
     public string[] newlines;
-    public bool isIntroDialogue = false;
     public GameObject audioManager;
     
     void Start()
     {
         // Automatically trigger the dialogue when the game starts
        AutoTriggerDialogue();
+       GameEvents.current.onInteractTriggerDay += AutoTriggerDialogue;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((isInRange && npcgameObject != null) || isIntroDialogue) //If player is in range
+        if((isInRange && npcgameObject != null) || GameManager.current.isIntroDialogue) //If player is in range
         {
             if(Input.GetKeyDown(interactKey)) //and presses a key
             {
                 
-                if (GameManager.current.isInConversation == false)
+                if (GameManager.current.isInConversation == false)   //if player isn't in conversation already
                 {
-                    CheckDialogueStatus();
+                    CheckDialogueStatus();  //check dialogue status
                     PlayAudio playAudio = audioManager.GetComponent<PlayAudio>();
                     playAudio.PlayInteractSound(); //Play Interact-sound
                     
-                }else
+                }else //skip check
                 {
                     InteractWithNPC();
                 }
@@ -44,7 +44,7 @@ public class DialogueManager : MonoBehaviour
 
         if(GameManager.current.isInConversation == false)
         {
-            isIntroDialogue = false;
+            GameManager.current.isIntroDialogue = false;
         }
     }
     
@@ -98,9 +98,10 @@ public class DialogueManager : MonoBehaviour
        
     }
 
-     public void AutoTriggerDialogue()
+    public void AutoTriggerDialogue()
     {
-        isIntroDialogue = true;
+        npcgameObject = null;
+        GameManager.current.isIntroDialogue = true;
         CheckDialogueStatus();
     }
 

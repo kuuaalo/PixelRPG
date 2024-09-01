@@ -20,8 +20,10 @@ MonoBehaviour:
     lines3: []
   day2:
     lines1:
-    - There's a Customer waiting for me.
-    lines2: []
+    - There's someone waiting for me...
+    - 
+    lines2:
+    - 
     lines3: []
   day3:
     lines1: []

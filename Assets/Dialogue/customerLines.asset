@@ -20,7 +20,10 @@ MonoBehaviour:
   day2:
     lines1:
     - ...
-    lines2: []
+    - The customer doesn't respond to your greeting.
+    - You can hear a faint breathing sound from behind it's mask.
+    lines2:
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

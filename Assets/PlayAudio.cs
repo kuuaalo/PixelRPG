@@ -13,41 +13,28 @@ public class PlayAudio : MonoBehaviour
     {
         GameEvents.current.onPhoneCall += EnablePlaySound;
         audioSource.clip = phoneSound; 
-       
     }
-
 
     public void EnablePlaySound()
     {
         StartCoroutine(PlaySoundCoroutine());
-        
-
     }
 
     private IEnumerator PlaySoundCoroutine()
     {   
         yield return new WaitForSeconds(3);
 
-        while (!GameManager.current.isInConversation) //Play sound until player enters conversation
+        while (!GameManager.current.lastTaskFinished) //Play sound until player interacts with phone
         {
             PlaySound(); //enable audio source
             yield return new WaitForSeconds(audioSource.clip.length); //wait until the clip finishes to play it again
-            
-            //if player interacts with phone disable sound
-            if (GameManager.current.isInConversation && !GameManager.current.everythingInteracted) 
-            {
-                //phoneSound.enabled = false;
-                audioSource.Stop();
-            }
-            
-            
         }
+        audioSource.Stop();
     }
 
     public void PlaySound()
     {
         audioSource.Play();
-
     }
 
     public void PlayInteractSound()

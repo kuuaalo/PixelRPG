@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
       else //if player is in conversation freeze movement
       {
          body.constraints = RigidbodyConstraints2D.FreezeAll;
+         Debug.Log("Froze player");
       }
    }
 

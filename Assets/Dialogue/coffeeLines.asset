@@ -22,8 +22,9 @@ MonoBehaviour:
   day2:
     lines1:
     - It's hard to concentrate when I'm being watched.
+    - You make the coffee as fast as possible.
     lines2:
-    - 
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

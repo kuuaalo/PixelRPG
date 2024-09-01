@@ -23,7 +23,8 @@ MonoBehaviour:
     lines1:
     - I could ask The Customer if they want to sit down.
     - I'd rather not though.
-    lines2: []
+    lines2:
+    - I need to escort the customer in to the office.
     lines3: []
   day3:
     lines1: []

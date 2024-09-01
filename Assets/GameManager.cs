@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
 
     public int currentDay;
     public bool everythingInteracted;
-    public bool phoneCallListened;
-    public bool canSkip;
+    public bool lastTaskFinished;
+    public bool tasksFinished;
+    private bool DayeventTriggered;
+    public bool isIntroDialogue = false;
     
     public GameObject phone;
     public GameObject window;
-    public GameObject desk;
+    public GameObject coffee;
     public GameObject customer;
 
     private NPC npcScript1;
@@ -36,20 +38,25 @@ public class GameManager : MonoBehaviour
     {
         npcScript1 = phone.GetComponent<NPC>();
         npcScript2 = window.GetComponent<NPC>();
-        npcScript3 = desk.GetComponent<NPC>();
+        npcScript3 = coffee.GetComponent<NPC>();
         GameEvents.current.onInteractTriggerDay += onClickYes;
+        
     }
     
 
     void Update()
     {
-        if (!everythingInteracted && !phoneCallListened)
+        //if player isn't in dialogue and hasn't finished all tasks, check to play audio
+        if (!everythingInteracted && !tasksFinished && !isInConversation) 
         {
             InteractedCheck();
-        }//else if(!isInConversation) //if everythinginteracted and player is not in conversation trigger event
-        
-        DayCheck();
- 
+        }
+
+        if (lastTaskFinished && !DayeventTriggered && !isInConversation)
+        {
+            GetDayEvent();
+        }
+    
     }
 
     void InteractedCheck() 
@@ -58,14 +65,14 @@ public class GameManager : MonoBehaviour
         {
             bool phone_isInteracted = npcScript1.isInteracted;
             bool window_isInteracted = npcScript2.isInteracted;
-            bool desk_isInteracted = npcScript3.isInteracted;
+            bool coffee_isInteracted = npcScript3.isInteracted;
                 
-            if (phone_isInteracted && window_isInteracted  && desk_isInteracted) //If all of these are interacted
+            if (phone_isInteracted && window_isInteracted  && coffee_isInteracted) //If all of these are interacted
             {
-                GameEvents.current.PhoneCall(); //Trigger phone call
+                GetDaySound();
                 
                 everythingInteracted = true; //set everythinginteracted true, 
-                phoneCallListened = true;
+                tasksFinished = true;
                 
             }
         }
@@ -85,11 +92,44 @@ public class GameManager : MonoBehaviour
     void onClickYes() //if player clicks yes on the letter adds to the day counter
     {
         currentDay ++;
-        Debug.Log(currentDay);
+        everythingInteracted = false; //set everythinginteracted true, 
+        tasksFinished = false;
+        lastTaskFinished = false;
+        isIntroDialogue = false;
+        DayeventTriggered = false;
+        DayCheck();
     }
     
     private void OnDestroy()
     {
         GameEvents.current.onInteractTriggerDay -= onClickYes;
+    }
+
+
+    private void GetDaySound()
+    {
+      switch(currentDay)
+      {
+        case 0:
+          GameEvents.current.PhoneCall(); 
+          break;
+        case 1: 
+        GameEvents.current.DayTwoTasks();
+          break;
+      }
+    }
+
+    private void GetDayEvent()
+    {
+        switch(currentDay)
+         {
+                case 0:
+                break;
+                case 1: 
+                GameEvents.current.DoorInteract();
+                break;
+        }
+        DayeventTriggered = true;
+        
     }
 }

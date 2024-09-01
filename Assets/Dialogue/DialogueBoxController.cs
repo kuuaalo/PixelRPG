@@ -48,6 +48,7 @@ public class DialogueBoxController : MonoBehaviour
         dialogueText.text = null; //reset dialogue text object
         index = 0; //set index back to 0
         GameManager.current.isInConversation = false; //player no longer in conversation
+        Debug.Log("DIaloguebox set the player to not be in conversation");
         dialoguePanel.gameObject.SetActive(false); //Hide dialogue panel
         questionDialog.gameObject.SetActive(false); //Hide question dialog
         
