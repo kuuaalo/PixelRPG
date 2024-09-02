@@ -21,14 +21,14 @@ public class PlayerController : MonoBehaviour
 
    void Update()
    {
-      if (GameManager.current.isInConversation == false)
+      if (GameManager.current.isInConversation == false) //allow movement if player is not in conversation
          {
          body.constraints = RigidbodyConstraints2D.FreezeRotation;
          // Gives a value between -1 and 1
          horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
          vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
-         if (horizontal != 0 && horizontal > 0)
+         if (horizontal != 0 && horizontal > 0) //Flip sprite
          {
          sr.flipX = true;
          }
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
       else //if player is in conversation freeze movement
       {
          body.constraints = RigidbodyConstraints2D.FreezeAll;
-         Debug.Log("Froze player");
       }
    }
 

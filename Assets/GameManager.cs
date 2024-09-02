@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             InteractedCheck();
         }
 
+        //If player has done the last task and event hasn't been triggered
         if (lastTaskFinished && !DayeventTriggered && !isInConversation)
         {
             GetDayEvent();
@@ -69,46 +70,46 @@ public class GameManager : MonoBehaviour
                 
             if (phone_isInteracted && window_isInteracted  && coffee_isInteracted) //If all of these are interacted
             {
-                GetDaySound();
+                GetDaySound(); //Call and invoke action
                 
                 everythingInteracted = true; //set everythinginteracted true, 
-                tasksFinished = true;
+                
+                tasksFinished = true; //set all tasks finished
                 
             }
         }
         
     }
 
+    void onClickYes() //if player clicks yes on the letter
+    {
+        currentDay ++;  //adds to the day counter
+        everythingInteracted = false; //sets all checks back to false
+        tasksFinished = false; 
+        lastTaskFinished = false;
+        isIntroDialogue = false;
+        DayeventTriggered = false;
+        DayCheck();
+    }
+
     void DayCheck()
     {
         
-        if (currentDay == 1)
+        if (currentDay == 1) //if second day, add npc
         {
             customer.SetActive(true);
             
         }
     }
 
-    void onClickYes() //if player clicks yes on the letter adds to the day counter
-    {
-        currentDay ++;
-        everythingInteracted = false; //set everythinginteracted true, 
-        tasksFinished = false;
-        lastTaskFinished = false;
-        isIntroDialogue = false;
-        DayeventTriggered = false;
-        DayCheck();
-    }
-    
     private void OnDestroy()
     {
         GameEvents.current.onInteractTriggerDay -= onClickYes;
     }
 
-
-    private void GetDaySound()
+    private void GetDaySound() 
     {
-      switch(currentDay)
+      switch(currentDay) //Call function based on day
       {
         case 0:
           GameEvents.current.PhoneCall(); 
@@ -121,13 +122,13 @@ public class GameManager : MonoBehaviour
 
     private void GetDayEvent()
     {
-        switch(currentDay)
+        switch(currentDay) //Call function based on day
          {
-                case 0:
-                break;
-                case 1: 
-                GameEvents.current.DoorInteract();
-                break;
+            case 0:
+            break;
+            case 1: 
+            GameEvents.current.DoorInteract();
+            break;
         }
         DayeventTriggered = true;
         

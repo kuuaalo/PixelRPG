@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CharacterLines : ScriptableObject
 {
+    //scriptable object that's used to create dialogue for different days
     [System.Serializable]
     public class DayDialogue //nested class that's used create instances
     {

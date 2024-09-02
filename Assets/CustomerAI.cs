@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomerAI : MonoBehaviour
 {
-    public enum NPCState
+    public enum NPCState //states for customer NPC
     {
     Idle,
     Following,
@@ -12,7 +12,7 @@ public class CustomerAI : MonoBehaviour
     WalkingToDoor
     }
     
-    public NPCState currentState = NPCState.Idle;
+    public NPCState currentState = NPCState.Idle; //default state
     public Transform player;    //player location on scene
     public Transform door;  //door location on scene
     public float followDistance = 4f;
@@ -52,6 +52,8 @@ public class CustomerAI : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         NPC npcScript = GetComponent<NPC>();
+        
+        //after player interacts with the NPC and moves far enough, start follow behaviour
         if(npcScript.isInteracted == true && GameManager.current.isInConversation == false && distanceToPlayer >= followDistance)
         {
             ChangeState(NPCState.Following);
@@ -62,18 +64,20 @@ public class CustomerAI : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
+        //if NPC reaches close enough to the player, stop movement
         if (distanceToPlayer <= stopDistance && distanceToPlayer > fleeDistance)
         {
             Debug.Log("NPC stopped");
         }
         
+        //if player is far enough continue movement
         else if (distanceToPlayer > stopDistance && distanceToPlayer > fleeDistance)
         {
             Vector2 direction  = (player.position - transform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
         
-        
+        //if player comes too close, change to flee state
         else
         {
             ChangeState(NPCState.Fleeing);
@@ -89,30 +93,35 @@ public class CustomerAI : MonoBehaviour
         
         
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        //if player goes far enough go back to follow state
         if (distanceToPlayer > followDistance)
         {
             ChangeState(NPCState.Following);
         }
     }
 
-    void WalkToDoor()
+    void WalkToDoor() //triggered from outside the script, during scripted event
     {
-        moveSpeed = 2f;
+        moveSpeed = 2f; //change speed faster
+        
         float distanceToDoor = Vector2.Distance(transform.position, door.position);
-        if (distanceToDoor <= doorReachThreshold) // Check if NPC has reached the door
+        
+        if (distanceToDoor <= doorReachThreshold) //check if player is close enough to door and stop
         {
             
         }else
         {
-            Vector2 direction = (door.position - transform.position).normalized; // Direction towards the door
-            transform.position = Vector2.MoveTowards(transform.position, door.position, moveSpeed * Time.deltaTime);
+            //move npc closer to door
+            Vector2 direction = (door.position - transform.position).normalized; 
+            transform.position = Vector2.MoveTowards(transform.position, door.position, moveSpeed * Time.deltaTime); 
             
         }
     }
 
-    public void ChangeState(NPCState newState)
+    public void ChangeState(NPCState newState) //takes new state as parameter
     {
-        currentState = newState;
+        currentState = newState; //changes state
         
     }
 }

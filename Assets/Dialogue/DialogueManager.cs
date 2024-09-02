@@ -16,17 +16,18 @@ public class DialogueManager : MonoBehaviour
     
     void Start()
     {
-        // Automatically trigger the dialogue when the game starts
+        // Automatically trigger the dialogue when the game starts to get intro-lines
        AutoTriggerDialogue();
-       GameEvents.current.onInteractTriggerDay += AutoTriggerDialogue;
+       GameEvents.current.onInteractTriggerDay += AutoTriggerDialogue; //After day change autotrigger dialogue again
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((isInRange && npcgameObject != null) || GameManager.current.isIntroDialogue) //If player is in range
+        //If player is in range or isIntroDialogue
+        if((isInRange && npcgameObject != null) || GameManager.current.isIntroDialogue) 
         {
-            if(Input.GetKeyDown(interactKey)) //and presses a key
+            if(Input.GetKeyDown(interactKey)) //and presses a key (E)
             {
                 
                 if (GameManager.current.isInConversation == false)   //if player isn't in conversation already
@@ -35,9 +36,9 @@ public class DialogueManager : MonoBehaviour
                     PlayAudio playAudio = audioManager.GetComponent<PlayAudio>();
                     playAudio.PlayInteractSound(); //Play Interact-sound
                     
-                }else //skip check
+                }else //if already in conversation skip dialogue status check
                 {
-                    InteractWithNPC();
+                    InteractWithNPC(); //Show dialogue test
                 }
             }
         }  
@@ -72,19 +73,19 @@ public class DialogueManager : MonoBehaviour
     {
         NPC npcScript;
         
-        if (npcgameObject != null)
+        if (npcgameObject != null) //if player has collided with npc 
         {
-            npcScript =  npcgameObject.GetComponent<NPC>();
+            npcScript =  npcgameObject.GetComponent<NPC>(); //Get NPC's dialogue script
         }
         else
         {
-            npcScript = GetComponent<NPC>();
+            npcScript = GetComponent<NPC>(); //Else, use player's own dialogue script for intro-lines
             
         }
 
-        newlines = npcScript.OnConversationStart();
-        InteractWithNPC();
-        
+        newlines = npcScript.OnConversationStart(); //invoke dialogue function from the script
+        InteractWithNPC(); //Invoke NPC-interact function
+         
 
     }
 
@@ -93,16 +94,16 @@ public class DialogueManager : MonoBehaviour
 
         DialogueBoxController dialogueBoxController = canvas.GetComponent<DialogueBoxController>(); //Get script from the canvas object
         
-        dialogueBoxController.ShowDialogue(newlines); //Summon method and give array as parameter
+        dialogueBoxController.ShowDialogue(newlines); //Summon dialoguebox and give array as parameter
         
        
     }
 
     public void AutoTriggerDialogue()
     {
-        npcgameObject = null;
-        GameManager.current.isIntroDialogue = true;
-        CheckDialogueStatus();
+        npcgameObject = null; //Set npcgameObject null to avoid overlapping dialogues
+        GameManager.current.isIntroDialogue = true; //Set isIntroDialogue to true
+        CheckDialogueStatus(); 
     }
 
 }

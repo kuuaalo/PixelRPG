@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class GameEvents : MonoBehaviour
 {
+    //Class holds Actions for different Scripted events in game 
+
     public static GameEvents current;
 
     private void Awake()
@@ -31,7 +33,7 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onPhoneCall; 
+    public event Action onPhoneCall; //When player finishes day 1 tasks
     public void PhoneCall()
     {
          if(onPhoneCall != null)
@@ -40,7 +42,7 @@ public class GameEvents : MonoBehaviour
         }
     }
     
-    public event Action onDayTwoTasks; 
+    public event Action onDayTwoTasks; //When player finishes day 2 tasks
     public void DayTwoTasks()
     {
          if(onDayTwoTasks!= null)
@@ -49,7 +51,7 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onDoorInteract; 
+    public event Action onDoorInteract; //When player interacts with door
     public void DoorInteract()
     {
          if(onDoorInteract!= null)

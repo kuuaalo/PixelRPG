@@ -25,12 +25,12 @@ public class UIController : MonoBehaviour
 
     private IEnumerator DaySquare()
     {
-        blackOutSquare.gameObject.SetActive(true); 
+        blackOutSquare.gameObject.SetActive(true);
         int dayNumber = GameManager.current.currentDay + 2; //get day number and 2 bc im lazy
 
         if (dayNumber == 3)
         {
-            dayText.text = ("GAME END (TBC?)");
+            dayText.text = ("GAME END (TBC?)"); //Game end on day 3
         }
         else{
         dayText.text = ("DAY " + dayNumber);

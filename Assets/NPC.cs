@@ -19,14 +19,14 @@ public class NPC : MonoBehaviour
         GameEvents.current.onInteractTriggerDay += onClickYes;
     }
 
-    public string[] OnConversationStart()
+    public string[] OnConversationStart() //Called after player interacts with object, returns string array
     {
         gameManager = gameManager.GetComponent<GameManager>();
         
         bool everythingInteracted = gameManager.everythingInteracted;
         string[] lines; 
         
-        CharacterLines.DayDialogue dayDialogue = GetDayDialogue();
+        CharacterLines.DayDialogue dayDialogue = GetDayDialogue(); //Call function to retrieve appropriate dialogue
 
         if (!everythingInteracted) //if player hasn't interacted with everything
         {
@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
           //if object is letter and time can be skipped
           if (isLetter && GameManager.current.lastTaskFinished == true) 
           {
-          lines = dayDialogue.lines3; //use secondary lines
+          lines = dayDialogue.lines3; //use third lines
           GameEvents.current.InteractLetter(); //Invoke interactletter
           
           }
@@ -48,12 +48,12 @@ public class NPC : MonoBehaviour
         {
           lines = dayDialogue.lines2; //if everything interacted use lines2
 
-          GetDayTask();
+          GetDayTask(); //Returns delegate variable function
 
           if (finaltask != null)
           {
-            finaltask();
-            if(isFinalTask)
+            finaltask(); //Useless delegate, but wanted to try it out
+            if(isFinalTask) //Checks if the object is this day's final task
             {
             GameManager.current.everythingInteracted = false; //set false to use normal lines
             GameManager.current.lastTaskFinished = true; //let letter skip day
@@ -61,14 +61,14 @@ public class NPC : MonoBehaviour
           }
         }
         
-      return lines;
+      return lines; //Return lines to dialoguemanager
     }
     
     private CharacterLines.DayDialogue GetDayDialogue()
     {
-      switch(GameManager.current.currentDay)
+      switch(GameManager.current.currentDay) //Gets day number from gamemanager
       {
-        case 0: return characterLines.day1;
+        case 0: return characterLines.day1; //Returns correct day's voicelines based on it
         case 1: return characterLines.day2;
         default: return null;
       }
@@ -76,10 +76,10 @@ public class NPC : MonoBehaviour
 
     private void GetDayTask()
     {
-      switch(GameManager.current.currentDay)
+      switch(GameManager.current.currentDay) //Gets day number from gamemanager
       {
         case 0:
-          finaltask = PhoneCall;
+          finaltask = PhoneCall; //Returns correct day's final task based on it
           break;
         case 1: 
           finaltask = DoorOpen;
@@ -92,7 +92,7 @@ public class NPC : MonoBehaviour
 
     void PhoneCall()
     {
-      if(gameObject.name == "Phone")
+      if(gameObject.name == "Phone") // If object's name is phone it is the final task
       {
         isFinalTask = true;
       }
@@ -100,7 +100,7 @@ public class NPC : MonoBehaviour
 
     void DoorOpen()
     {
-      if(gameObject.name == "Door")
+      if(gameObject.name == "Door") // If object's name is door it is the final task
       {
         isFinalTask = true;
       }
@@ -110,6 +110,7 @@ public class NPC : MonoBehaviour
     private void onClickYes()
     {
       isInteracted = false; //reset interacted checks on day change
+      isFinalTask = false; //reset finaltask checks on day change
     }
 
     private void OnDestroy()

@@ -12,27 +12,29 @@ public class LightControl : MonoBehaviour
 
     private float timer;
     private float interval;
-    private bool isFlickering; // New flag to control flickering
+    private bool isFlickering;
 
     void Update()
     {
-        if (isFlickering) // Only toggle light if flickering is enabled
+        if (isFlickering) //if flickering is enabled
         {
             timer += Time.deltaTime;
             if (timer > interval)
             {
-                ToggleLight();
+                ToggleLight(); //call toggle light function
             }
         }
     }
 
     void ToggleLight()
     {
-        // Toggle myLight
+        //toggle light over door
         myLight.enabled = !myLight.enabled;
+
+        //flicker at random intervals and random intensity
         interval = myLight.enabled ? Random.Range(0, maxWait) : Random.Range(0, maxFlicker);
         
-        // Toggle myLight2
+        //toggle light over door
         myLight2.enabled = !myLight2.enabled;
         interval = myLight2.enabled ? Random.Range(0, maxWait) : Random.Range(0, maxFlicker);
 
@@ -53,15 +55,14 @@ public class LightControl : MonoBehaviour
 
     public void EventLight()
     {
-        isFlickering = true; // Start flickering
-        timer = 0; // Reset timer
+        isFlickering = true; //start flickering
+        timer = 0; //reset timer
     }
 
-    // Method to stop flickering and reset lights to a normal state
     public void StopEventLight()
     {
-        isFlickering = false; // Stop flickering
-        ResetLights(); // Reset lights to a default state
+        isFlickering = false; //stop flickering
+        ResetLights(); //reset lights
     }
 
     void ResetLights()

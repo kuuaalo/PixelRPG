@@ -37,7 +37,7 @@ public class PlayAudio : MonoBehaviour
         audioSource.Play();
     }
 
-    public void PlayInteractSound()
+    public void PlayInteractSound() //Played when player interacts with things
     {
         audioSource.PlayOneShot(interactSound);
     }
